@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { AddIcon, Logo } from '../../../../public/icons';
-import { PATH } from '@/shared/constants';
 import NavButton from './NavButton';
+import { NAVBAR_ITEMS } from '../model';
 
 const LogoButton = () => (
   <button className="flex cursor-pointer items-center gap-3 outline-none">
@@ -30,10 +30,9 @@ export default function Navbar() {
         <div className="flex items-center gap-13">
           <LogoButton />
           <div className="text-b1 flex items-center gap-[38px] font-medium">
-            <NavButton href={PATH.HOME} label="홈" />
-            <NavButton href="" label="시" />
-            <NavButton href="" label="소설" />
-            <NavButton href="" label="커뮤니티" />
+            {NAVBAR_ITEMS.map(item => (
+              <NavButton key={item.label} href={item.href} label={item.label} />
+            ))}
           </div>
         </div>
         <AddSection />
@@ -44,10 +43,9 @@ export default function Navbar() {
       </div>
       <div className="flex w-full items-center justify-between md:hidden">
         <div className="text-b1 flex w-full items-center justify-between font-medium">
-          <NavButton href={PATH.HOME} label="홈" />
-          <NavButton href="" label="시" />
-          <NavButton href="" label="소설" />
-          <NavButton href="" label="커뮤니티" />
+          {NAVBAR_ITEMS.map(item => (
+            <NavButton key={item.label} href={item.href} label={item.label} />
+          ))}
         </div>
       </div>
     </nav>
