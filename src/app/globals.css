@@ -23,13 +23,11 @@
 
   --radius-20: 20px;
   --radius-12: 12px;
+
+  --spacing-normal: 17px;
 }
 
 @layer base {
-  :root {
-    font-size: 62.5%;
-  }
-
   input[type='search']::-webkit-search-decoration,
   input[type='search']::-webkit-search-cancel-button,
   input[type='search']::-webkit-search-results-button,
@@ -41,6 +39,25 @@
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+    width: 0;
+    height: 0;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
 
@@ -118,4 +135,5 @@
 
 body {
   font-family: 'SCDream';
+  font-size: 16px;
 }
