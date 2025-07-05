@@ -1,4 +1,5 @@
 export const REQUEST = {
+  ALL_TAG: '/api/work/tag/all',
   BEST_TODAY: '/api/work/best/today',
   MONTHLY_POPULAR_WORK: '/api/work/popular/monthly',
   MONTHLY_BEST_AUTHOR: '/api/work/author/best/monthly',
