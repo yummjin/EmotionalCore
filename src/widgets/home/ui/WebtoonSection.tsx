@@ -31,7 +31,7 @@ export default function WebtoonSection() {
 
 const WebtoonItem = ({ title, authorName, coverImageUrl }: Work) => (
   <div className="flex flex-1 flex-col gap-4">
-    <div className="relative h-[256px]">
+    <div className="relative h-[200px] w-[132px] flex-shrink-0 md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
       <Image
         src={`https://emotioncores.com${coverImageUrl}`}
         alt={title}

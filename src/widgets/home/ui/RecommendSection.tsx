@@ -18,7 +18,7 @@ export default function RecommendSection({ type }: { type: 'poem' | 'novel' }) {
           </button>
         </div>
         {data && (
-          <div className="scrollbar-hide hidden flex-wrap gap-4 overflow-x-auto md:flex">
+          <div className="scrollbar-hide flex flex-wrap gap-4 overflow-x-auto">
             {data.slice(0, 3).map(novel => (
               <RecommendItem key={novel.id} {...novel} />
             ))}
