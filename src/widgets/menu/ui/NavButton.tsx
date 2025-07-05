@@ -16,7 +16,10 @@ export default function NavButton({
   return (
     <Link
       href={href}
-      className={cn(!isActive ? 'text-gray-500' : 'text-black')}
+      className={cn(
+        !isActive ? 'text-gray-500' : 'text-black',
+        'cursor-pointer outline-none',
+      )}
     >
       {label}
     </Link>

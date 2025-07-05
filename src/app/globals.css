@@ -25,9 +25,18 @@
   --radius-12: 12px;
 
   --spacing-normal: 17px;
+
+  --spacing-large: 1200px;
+  --spacing-medium: 744px;
+
+  --container-medium: 960px;
 }
 
 @layer base {
+  :root {
+    --swiper-navigation-size: 18px !important;
+  }
+
   input[type='search']::-webkit-search-decoration,
   input[type='search']::-webkit-search-cancel-button,
   input[type='search']::-webkit-search-results-button,
@@ -59,6 +68,29 @@
   .scrollbar-hide::-webkit-scrollbar-track {
     background: transparent;
   }
+}
+
+.swiper-container {
+  width: 100%;
+}
+
+/* .swiper-button-next {
+  right: -20px !important;
+}
+
+.swiper-button-prev {
+  left: -20px !important;
+} */
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000 !important;
+  background: #fff !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+  z-index: 4000 !important;
 }
 
 @font-face {
