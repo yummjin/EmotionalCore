@@ -1,2 +1,3 @@
 export { default as BestSection } from './BestSection';
 export { default as RecommendSection } from './RecommendSection';
+export { default as WebtoonSection } from './WebtoonSection';
