@@ -25,6 +25,11 @@
   --radius-12: 12px;
 
   --spacing-normal: 17px;
+
+  --spacing-large: 1200px;
+  --spacing-medium: 744px;
+
+  --container-medium: 960px;
 }
 
 @layer base {

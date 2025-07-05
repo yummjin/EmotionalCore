@@ -13,8 +13,8 @@ export default function SwiperSection({ label }: { label: string }) {
 
   return (
     <div className="px-normal flex w-screen justify-center">
-      <div className="flex w-full max-w-[1078px] flex-col gap-[30px]">
-        <p className="text-h2 sm:text-h1 font-medium">{label}</p>
+      <div className="md:max-w-medium lg:max-w-large flex w-full flex-col gap-[20px] lg:gap-[30px]">
+        <p className="text-h4 md:text-h1 font-medium">{label}</p>
         {data && (
           <div className="scrollbar-hide flex flex-nowrap gap-4 overflow-x-auto">
             {data.map(item => (

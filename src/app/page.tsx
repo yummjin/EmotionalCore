@@ -8,7 +8,7 @@ import {
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col gap-20">
+    <div className="flex flex-col gap-8 md:gap-20">
       <BestSection />
       <RecommendSection type="novel" />
       <RecommendSection type="poem" />
