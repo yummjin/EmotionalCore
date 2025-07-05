@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import type { Metadata } from 'next';
-import { Navbar } from '@/widgets/menu/ui';
+import { Footer, Navbar } from '@/widgets/menu/ui';
 import Providers from './provider';
 import './globals.css';
 
@@ -18,6 +18,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
           {children}
+          <Footer />
         </Providers>
       </body>
     </html>
