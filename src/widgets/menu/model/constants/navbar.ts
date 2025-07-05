@@ -7,14 +7,14 @@ export const NAVBAR_ITEMS = [
   },
   {
     label: '게시판',
-    href: '/',
+    href: '/sample',
   },
   {
     label: '검색',
-    href: '/',
+    href: '/sample',
   },
   {
     label: '서재',
-    href: '/',
+    href: '/sample',
   },
 ];
