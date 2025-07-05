@@ -15,8 +15,8 @@ export default function BestSection() {
         </p>
         {data && (
           <div className="scrollbar-hide flex gap-5 overflow-x-auto md:gap-1.5 lg:gap-[46px]">
-            {data.map(work => (
-              <BestItem key={work.id} {...work} />
+            {data.map((work, index) => (
+              <BestItem key={work.id} {...work} rank={index + 1} />
             ))}
           </div>
         )}
@@ -25,7 +25,12 @@ export default function BestSection() {
   );
 }
 
-const BestItem = ({ title, authorName, coverImageUrl }: Work) => (
+const BestItem = ({
+  title,
+  authorName,
+  coverImageUrl,
+  rank,
+}: Work & { rank: number }) => (
   <div className="flex flex-shrink-0 flex-col gap-4">
     <div className="relative h-[200px] w-[132px] md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
       <Image
@@ -34,6 +39,9 @@ const BestItem = ({ title, authorName, coverImageUrl }: Work) => (
         fill
         className="rounded-[10px] object-fill"
       />
+      <div className="bg-m-500/80 absolute rounded-tl-[10px] rounded-br-[10px] px-3 py-1 text-white">
+        {rank}
+      </div>
     </div>
     <div className="flex flex-col">
       <p className="text-b1 font-medium">{title}</p>
