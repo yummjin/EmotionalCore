@@ -10,4 +10,5 @@ export const REQUEST = {
   NEW_WORK: '/api/work/new',
   NEW_AUTHOR: '/api/authors/new/author',
   KEYWORDS: '/api/work/search/popular',
+  SEARCH: '/api/work/search',
 };
