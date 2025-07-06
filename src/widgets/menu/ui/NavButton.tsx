@@ -11,7 +11,8 @@ export default function NavButton({
   href: string;
   label: string;
 }) {
-  const isActive = usePathname() === href;
+  const pathname = usePathname();
+  const isActive = href === '/' ? pathname === href : pathname.startsWith(href);
 
   return (
     <Link

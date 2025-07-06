@@ -7,7 +7,7 @@ export const NAVBAR_ITEMS = [
   },
   {
     label: '게시판',
-    href: '/sample',
+    href: PATH.BOARD,
   },
   {
     label: '검색',
