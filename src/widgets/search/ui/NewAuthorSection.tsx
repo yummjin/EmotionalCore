@@ -28,12 +28,12 @@ export default function NewAuthorSection() {
 
 const AuthorItem = ({ description, authorName, coverImageUrl }: Author) => (
   <div className="flex h-[200px] w-[132px] flex-1 flex-shrink-0 flex-col items-center justify-center gap-4 rounded-[10px] border-[1px] border-gray-900 md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
-    <div className="relative size-[100px] rounded-full bg-red-500">
+    <div className="relative size-[100px] rounded-full bg-gray-200">
       <Image
         src={`https://emotioncores.com${coverImageUrl}`}
         alt={authorName}
         fill
-        className="rounded-full object-fill"
+        className="rounded-full object-cover"
       />
     </div>
     <div className="flex flex-col">
