@@ -11,7 +11,7 @@ export const NAVBAR_ITEMS = [
   },
   {
     label: '검색',
-    href: '/sample',
+    href: PATH.SEARCH,
   },
   {
     label: '서재',

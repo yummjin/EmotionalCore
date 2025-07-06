@@ -7,4 +7,8 @@ export const REQUEST = {
   RECOMMEND_WEBTOON: '/api/work/recommend/webtoon',
   RECOMMEND_POEM: '/api/work/recommend/poem',
   RECOMMEND_NOVEL: '/api/work/recommend/novel',
+  NEW_WORK: '/api/work/new',
+  NEW_AUTHOR: '/api/authors/new/author',
+  KEYWORDS: '/api/work/search/popular',
+  SEARCH: '/api/work/search',
 };
