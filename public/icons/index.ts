@@ -6,6 +6,10 @@ import SearchIcon from './icon-search.svg';
 import GoogleIcon from './icon-google.svg';
 import NaverIcon from './icon-naver.svg';
 import KakaoIcon from './icon-kakao.svg';
+import ChevronLeft from './ChevronLeft';
+import ChevronRight from './ChevronRight';
+import ChevronsLeft from './ChevronsLeft';
+import ChevronsRight from './ChevronsRight';
 
 export {
   Logo,
@@ -16,4 +20,8 @@ export {
   GoogleIcon,
   NaverIcon,
   KakaoIcon,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
 };
