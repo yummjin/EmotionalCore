@@ -1,22 +1,24 @@
 'use client';
 
 import { cn } from '@/shared/utils';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { useFetchAllTag } from '../api';
 
 interface SelectorSectionProps {
   selectedTag: string[];
   setSelectedTag: Dispatch<SetStateAction<string[]>>;
+  selectedType: string;
+  setSelectedType: Dispatch<SetStateAction<string>>;
 }
 
 export default function SelectorSection({
   selectedTag,
   setSelectedTag,
+  selectedType,
+  setSelectedType,
 }: SelectorSectionProps) {
   const { data: tags } = useFetchAllTag();
   const buttons = ['전체', '소설', '시', '웹툰'];
-
-  const [selected, setSelected] = useState<number>(0);
 
   const onTagClick = (name: string) => {
     setSelectedTag(prev =>
@@ -32,9 +34,9 @@ export default function SelectorSection({
             key={index}
             className={cn(
               'text-b1 md:text-h1 cursor-pointer py-1 font-medium outline-none',
-              selected === index && 'border-m-500 border-b-4',
+              selectedType === button && 'border-m-500 border-b-4',
             )}
-            onClick={() => setSelected(index)}
+            onClick={() => setSelectedType(button)}
           >
             {button}
           </button>

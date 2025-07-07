@@ -1,9 +1,11 @@
 export const REQUEST = {
   ALL_TAG: '/api/work/tag/all',
+  ALL_WORK: '/api/work/all',
   WORK_TAG: '/api/work/tag',
+  WORK_BY_TAG: '/api/work/type/tag',
   BEST_TODAY: '/api/work/best/today',
   MONTHLY_POPULAR_WORK: '/api/work/popular/monthly',
-  MONTHLY_BEST_AUTHOR: '/api/work/author/best/monthly',
+  MONTHLY_BEST_AUTHOR: '/api/authors/best/monthly',
   RECOMMEND_WEBTOON: '/api/work/recommend/webtoon',
   RECOMMEND_POEM: '/api/work/recommend/poem',
   RECOMMEND_NOVEL: '/api/work/recommend/novel',
@@ -11,4 +13,9 @@ export const REQUEST = {
   NEW_AUTHOR: '/api/authors/new/author',
   KEYWORDS: '/api/work/search/popular',
   SEARCH: '/api/work/search',
+  LOGIN: '/api/member/signin',
+  REFRESH: '/api/member/token/refresh',
+  OAUTH_GOOGLE: '/login/oauth2/code/google',
+  OAUTH_KAKAO: '/auth/oauth2/kakao',
+  USER_INFO: '/api/mypage/mydetail',
 };
