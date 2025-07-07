@@ -11,4 +11,5 @@ export const REQUEST = {
   NEW_AUTHOR: '/api/authors/new/author',
   KEYWORDS: '/api/work/search/popular',
   SEARCH: '/api/work/search',
+  LOGIN: '/api/member/signin',
 };
