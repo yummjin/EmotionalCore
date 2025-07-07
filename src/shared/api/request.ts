@@ -12,4 +12,7 @@ export const REQUEST = {
   KEYWORDS: '/api/work/search/popular',
   SEARCH: '/api/work/search',
   LOGIN: '/api/member/signin',
+  REFRESH: '/api/member/token/refresh',
+  OAUTH_GOOGLE: '/login/oauth2/code/google',
+  OAUTH_KAKAO: '/auth/oauth2/kakao',
 };
