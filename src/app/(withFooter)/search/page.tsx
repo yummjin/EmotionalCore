@@ -7,11 +7,11 @@ import {
   ResultSection,
 } from '@/widgets/search/ui';
 import Image from 'next/image';
-import { SearchIcon } from '../../../public/icons';
 import { useFetchSearchResults } from '@/widgets/search/api';
 import { useForm } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useDebounce } from '@/shared/hooks';
+import { SearchIcon } from '../../../../public/icons';
 
 export default function Page() {
   const { register, watch } = useForm<{ query: string }>({
