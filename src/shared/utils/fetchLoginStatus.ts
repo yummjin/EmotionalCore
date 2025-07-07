@@ -1,4 +1,7 @@
 export const fetchLoginStatus = () => {
-  const stored = sessionStorage.getItem('userToken');
-  return stored;
+  if (typeof window !== 'undefined') {
+    const stored = sessionStorage.getItem('userToken');
+    return stored;
+  }
+  return null;
 };

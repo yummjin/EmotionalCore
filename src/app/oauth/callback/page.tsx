@@ -4,9 +4,9 @@ import { PATH } from '@/shared/constants';
 import { getSession } from '@/shared/utils';
 import { useSubmitGoogleLogin, useSubmitKakaoLogin } from '@/widgets/oauth/api';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 
-export default function OAuthCallbackPage() {
+function OAuthCallbackContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
@@ -54,5 +54,21 @@ export default function OAuthCallbackPage() {
         <p className="text-h3 text-center font-medium">로그인 중..</p>
       </div>
     </div>
+  );
+}
+
+export default function OAuthCallbackPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex w-full justify-center">
+          <div className="flex h-70 w-full max-w-[400px] flex-col items-center justify-center gap-3">
+            <p className="text-h3 text-center font-medium">로그인 중..</p>
+          </div>
+        </div>
+      }
+    >
+      <OAuthCallbackContent />
+    </Suspense>
   );
 }

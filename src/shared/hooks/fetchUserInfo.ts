@@ -15,6 +15,7 @@ export const useFetchUserInfo = () => {
   return useQuery({
     queryKey: ['userInfo'],
     queryFn: fetchUserInfo,
-    enabled: !!sessionStorage.getItem('userToken'),
+    enabled:
+      typeof window !== 'undefined' && !!sessionStorage.getItem('userToken'),
   });
 };

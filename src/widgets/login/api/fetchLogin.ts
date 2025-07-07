@@ -2,6 +2,7 @@ import { post, REQUEST } from '@/shared/api';
 import type { Login } from '../types';
 import { useMutation } from '@tanstack/react-query';
 import { useFetchUserInfo } from '@/shared/hooks';
+import { setSession } from '@/shared/utils';
 
 const fetchLogin = async (data: Login) => {
   const response = await post<Login>({
@@ -17,7 +18,7 @@ export const useFetchLogin = () => {
   return useMutation({
     mutationFn: fetchLogin,
     onSuccess: data => {
-      sessionStorage.setItem('userToken', data as string);
+      setSession('userToken', data as string);
       refetchUserInfo();
     },
   });

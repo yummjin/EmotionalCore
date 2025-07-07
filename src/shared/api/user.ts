@@ -30,10 +30,12 @@ const instance = axios.create({
 });
 
 instance.interceptors.request.use(async config => {
-  const stored = sessionStorage.getItem('userToken');
-  if (stored) {
-    const accessToken = stored;
-    config.headers.Authorization = `Bearer ${accessToken}`;
+  if (typeof window !== 'undefined') {
+    const stored = sessionStorage.getItem('userToken');
+    if (stored) {
+      const accessToken = stored;
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
   }
   return config;
 });
@@ -51,7 +53,9 @@ instance.interceptors.response.use(
           data: { refreshToken: fetchCookie('refreshToken')! },
         });
         const { accessToken: newAccessToken } = response.data;
-        sessionStorage.setItem('userToken', newAccessToken);
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('userToken', newAccessToken);
+        }
         const originalRequest = error.config as AxiosRequestConfig;
         if (originalRequest) {
           originalRequest.headers = {
