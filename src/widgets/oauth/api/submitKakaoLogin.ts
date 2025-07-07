@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 
 const submitKakaoLogin = async (code: string) => {
   const response = await post<{ code: string }, { access_token: string }>({
-    request: REQUEST.OAUTH_GOOGLE,
+    request: REQUEST.OAUTH_KAKAO,
     data: { code: code },
   });
   return response.data;
