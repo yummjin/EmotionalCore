@@ -20,9 +20,8 @@ export default function LoginForm() {
 
   const onSubmit = (data: Login) => {
     mutate(data, {
-      onSuccess: data => {
+      onSuccess: () => {
         setError('');
-        sessionStorage.setItem('userToken', data as string);
         router.push(PATH.HOME);
       },
       onError: error => setError(error.message),

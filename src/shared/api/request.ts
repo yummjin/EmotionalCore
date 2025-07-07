@@ -17,4 +17,5 @@ export const REQUEST = {
   REFRESH: '/api/member/token/refresh',
   OAUTH_GOOGLE: '/login/oauth2/code/google',
   OAUTH_KAKAO: '/auth/oauth2/kakao',
+  USER_INFO: '/api/mypage/mydetail',
 };
