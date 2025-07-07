@@ -1,27 +1,43 @@
-import React from 'react';
+'use client';
+
 import Image from 'next/image';
 import { AddIcon, Logo } from '../../../../public/icons';
 import NavButton from './NavButton';
 import { NAVBAR_ITEMS } from '../model';
+import { fetchLoginStatus } from '@/shared/utils';
+import { PATH } from '@/shared/constants';
+import { useRouter } from 'next/navigation';
 
-const LogoButton = () => (
-  <button className="flex cursor-pointer items-center gap-3 outline-none">
-    <Image src={Logo} alt="logo" />
-    <span className="text-h3 hidden font-medium md:block">감성코어</span>
-  </button>
-);
-
-const AddSection = () => (
-  <div className="flex items-center gap-8">
-    <button className="flex cursor-pointer items-center gap-2">
-      <Image src={AddIcon} alt="logo" />
-      <span className="text-m-600 text-b1 font-normal md:font-medium">
-        작품 등록
-      </span>
+const LogoButton = () => {
+  return (
+    <button className="flex cursor-pointer items-center gap-3 outline-none">
+      <Image src={Logo} alt="logo" />
+      <span className="text-h3 hidden font-medium md:block">감성코어</span>
     </button>
-    <button className="size-[32px] cursor-pointer rounded-full bg-gray-400 outline-none" />
-  </div>
-);
+  );
+};
+
+const AddSection = () => {
+  const router = useRouter();
+
+  return (
+    <div className="flex items-center gap-8">
+      <button className="flex cursor-pointer items-center gap-2">
+        <Image src={AddIcon} alt="logo" />
+        <span className="text-m-600 text-b1 font-normal md:font-medium">
+          작품 등록
+        </span>
+      </button>
+      <button
+        className="size-[32px] cursor-pointer rounded-full bg-gray-300 outline-none"
+        onClick={() => {
+          if (fetchLoginStatus()) router.push(PATH.HOME);
+          else router.push(PATH.LOGIN);
+        }}
+      />
+    </div>
+  );
+};
 
 export default function Navbar() {
   return (
