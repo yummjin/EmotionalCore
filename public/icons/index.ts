@@ -3,5 +3,17 @@ import LogoFooter from './logo-footer.svg';
 import Title from './title.svg';
 import AddIcon from './icon-add.svg';
 import SearchIcon from './icon-search.svg';
+import GoogleIcon from './icon-google.svg';
+import NaverIcon from './icon-naver.svg';
+import KakaoIcon from './icon-kakao.svg';
 
-export { Logo, LogoFooter, Title, AddIcon, SearchIcon };
+export {
+  Logo,
+  LogoFooter,
+  Title,
+  AddIcon,
+  SearchIcon,
+  GoogleIcon,
+  NaverIcon,
+  KakaoIcon,
+};
