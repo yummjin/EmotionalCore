@@ -5,8 +5,15 @@
 - 검색
 - 마이페이지 및 서재
 
+## 빠른 시작
+
+```
+pnpm install
+pnpm run dev
+```
+
 ## 사용 기술
-`Next.js` `React` `TypeScript` `tanstack query` `cva`
+`Next.js` `React` `TypeScript` `tanstack query` `cva` `pnpm`
 
 ## 파일 구조
 
