@@ -1,18 +1,13 @@
+import { setCookie, getCookie, removeCookie } from './cookie';
+
 export const setSession = (key: string, value: string) => {
-  if (typeof window !== 'undefined') {
-    sessionStorage.setItem(key, value);
-  }
+  setCookie(key, value);
 };
 
 export const getSession = (key: string) => {
-  if (typeof window !== 'undefined') {
-    return sessionStorage.getItem(key);
-  }
-  return null;
+  return getCookie(key);
 };
 
 export const removeSession = (key: string) => {
-  if (typeof window !== 'undefined') {
-    sessionStorage.removeItem(key);
-  }
+  removeCookie(key);
 };

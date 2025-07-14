@@ -3,14 +3,19 @@
 import Image from 'next/image';
 import { AddIcon, Logo } from '../../../../public/icons';
 import NavButton from './NavButton';
-import { NAVBAR_ITEMS } from '../model';
 import { fetchLoginStatus } from '@/shared/utils';
+import { NAVBAR_ITEMS } from '../model';
 import { PATH } from '@/shared/constants';
 import { useRouter } from 'next/navigation';
 
 const LogoButton = () => {
+  const router = useRouter();
+
   return (
-    <button className="flex cursor-pointer items-center gap-3 outline-none">
+    <button
+      onClick={() => router.push(PATH.HOME)}
+      className="flex cursor-pointer items-center gap-3 outline-none"
+    >
       <Image src={Logo} alt="logo" />
       <span className="text-h3 hidden font-medium md:block">감성코어</span>
     </button>
@@ -31,8 +36,11 @@ const AddSection = () => {
       <button
         className="size-[32px] cursor-pointer rounded-full bg-gray-300 outline-none"
         onClick={() => {
-          if (fetchLoginStatus()) router.push(PATH.HOME);
-          else router.push(PATH.LOGIN);
+          if (fetchLoginStatus()) {
+            router.push(PATH.USER);
+          } else {
+            router.push(PATH.LOGIN);
+          }
         }}
       />
     </div>

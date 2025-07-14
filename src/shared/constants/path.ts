@@ -4,4 +4,6 @@ export const PATH = {
   SEARCH: '/search',
   SIGNUP: '/signup',
   LOGIN: '/login',
+  USER: '/user',
+  LEAVE: 'leave',
 };
