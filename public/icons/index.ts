@@ -10,6 +10,7 @@ import ChevronLeft from './ChevronLeft';
 import ChevronRight from './ChevronRight';
 import ChevronsLeft from './ChevronsLeft';
 import ChevronsRight from './ChevronsRight';
+import MyPageIcon from './icon-mypage.svg';
 
 export {
   Logo,
@@ -24,4 +25,5 @@ export {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  MyPageIcon,
 };
