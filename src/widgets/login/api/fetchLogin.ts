@@ -2,7 +2,7 @@ import { post, REQUEST } from '@/shared/api';
 import type { Login } from '../types';
 import { useMutation } from '@tanstack/react-query';
 import { useFetchUserInfo } from '@/shared/hooks';
-import { setSession } from '@/shared/utils';
+import { setCookie } from '@/shared/utils/cookie';
 
 const fetchLogin = async (data: Login) => {
   const response = await post<Login>({
@@ -13,13 +13,16 @@ const fetchLogin = async (data: Login) => {
 };
 
 export const useFetchLogin = () => {
-  const { refetch: refetchUserInfo } = useFetchUserInfo();
+  const { refetch: fetchUserInfo } = useFetchUserInfo();
 
   return useMutation({
     mutationFn: fetchLogin,
     onSuccess: data => {
-      setSession('userToken', data as string);
-      refetchUserInfo();
+      setCookie('userToken', data as string, {
+        path: '/',
+        sameSite: 'Strict',
+      });
+      fetchUserInfo();
     },
   });
 };
