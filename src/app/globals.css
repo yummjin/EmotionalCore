@@ -30,6 +30,7 @@
   --spacing-medium: 744px;
 
   --container-medium: 960px;
+  --container-large: 1200px;
 }
 
 @layer base {
