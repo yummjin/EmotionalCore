@@ -1,7 +1,5 @@
+import { getCookie } from './cookie';
+
 export const fetchLoginStatus = () => {
-  if (typeof window !== 'undefined') {
-    const stored = sessionStorage.getItem('userToken');
-    return stored;
-  }
-  return null;
+  return getCookie('userToken');
 };

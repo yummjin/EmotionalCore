@@ -8,6 +8,7 @@ import { post } from './axios';
 import { PATH } from '../constants';
 import { REQUEST } from './request';
 import { fetchCookie } from '../utils';
+import { getCookie, setCookie } from '../utils/cookie';
 
 interface PostRequestParams<TData> {
   request: string;
@@ -31,7 +32,7 @@ const instance = axios.create({
 
 instance.interceptors.request.use(async config => {
   if (typeof window !== 'undefined') {
-    const stored = sessionStorage.getItem('userToken');
+    const stored = getCookie('userToken');
     if (stored) {
       const accessToken = stored;
       config.headers.Authorization = `Bearer ${accessToken}`;
@@ -54,7 +55,7 @@ instance.interceptors.response.use(
         });
         const { accessToken: newAccessToken } = response.data;
         if (typeof window !== 'undefined') {
-          sessionStorage.setItem('userToken', newAccessToken);
+          setCookie('userToken', newAccessToken);
         }
         const originalRequest = error.config as AxiosRequestConfig;
         if (originalRequest) {
