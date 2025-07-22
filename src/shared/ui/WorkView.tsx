@@ -21,18 +21,29 @@ export default function WorkView({
   const renderWorks = () => {
     if (isFetching)
       return (
-        <>
+        <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8 xl:grid-cols-5 xl:gap-10">
           <WorkItem.Skeleton />
           <WorkItem.Skeleton />
           <WorkItem.Skeleton />
           <WorkItem.Skeleton />
           <WorkItem.Skeleton />
-        </>
+        </div>
       );
 
-    if (!data) return <> 데이터가 없습니다.</>;
+    if (!data)
+      return (
+        <div className="text-b1 flex h-[calc(100vh-685px)] w-full items-center justify-center">
+          데이터가 없습니다.
+        </div>
+      );
 
-    return data.map(work => <WorkItem key={work.id} {...work} />);
+    return (
+      <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8 xl:grid-cols-5 xl:gap-10">
+        {data.map(work => (
+          <WorkItem key={work.id} {...work} />
+        ))}
+      </div>
+    );
   };
 
   return (
@@ -40,9 +51,7 @@ export default function WorkView({
       <div className="flex w-full justify-between">
         <span>총 {totalCount}개</span>
       </div>
-      <div className="grid w-full grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4 lg:gap-8 xl:grid-cols-5 xl:gap-10">
-        {renderWorks()}
-      </div>
+      {renderWorks()}
       <div className="mt-20 flex w-full justify-center">
         <Pagination
           current={index}
