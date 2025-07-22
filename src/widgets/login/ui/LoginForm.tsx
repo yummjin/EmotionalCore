@@ -8,12 +8,13 @@ import type { Login } from '../types';
 import { useFetchLogin } from '../api';
 import { useState } from 'react';
 import { ERROR_MESSAGE } from '../model';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { PATH } from '@/shared/constants';
 
 export default function LoginForm() {
   const [error, setError] = useState<string>('');
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const { register, handleSubmit } = useForm<Login>();
   const { mutate } = useFetchLogin();
@@ -22,7 +23,9 @@ export default function LoginForm() {
     mutate(data, {
       onSuccess: () => {
         setError('');
-        router.push(PATH.HOME);
+        // returnUrl이 있으면 해당 페이지로, 없으면 홈으로 이동
+        const returnUrl = searchParams.get('returnUrl');
+        router.push(returnUrl || PATH.HOME);
       },
       onError: error => setError(error.message),
     });

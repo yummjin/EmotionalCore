@@ -5,8 +5,10 @@ import LoginButton from './LoginButton';
 import InfoSection from './InfoSection';
 import { setSession } from '@/shared/utils';
 import { GoogleIcon, KakaoIcon, NaverIcon } from '../../../../public/icons';
+import { useSearchParams } from 'next/navigation';
 
 export default function SocialLoginSection() {
+  const searchParams = useSearchParams();
   const googleClientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID;
   const kakaoClientId = process.env.NEXT_PUBLIC_KAKAO_REST_API_KEY;
   const naverClientId = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
@@ -14,22 +16,34 @@ export default function SocialLoginSection() {
 
   const handleKakaoLogin = () => {
     setSession('socialMode', 'kakao');
+    const returnUrl = searchParams.get('returnUrl');
+    const redirectUri = returnUrl
+      ? `${redirectUrl}?returnUrl=${encodeURIComponent(returnUrl)}`
+      : redirectUrl;
     window.location.replace(
-      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoClientId}&redirect_uri=${redirectUrl}`,
+      `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${kakaoClientId}&redirect_uri=${redirectUri}`,
     );
   };
 
   const handleNaverLogin = () => {
     setSession('socialMode', 'naver');
+    const returnUrl = searchParams.get('returnUrl');
+    const redirectUri = returnUrl
+      ? `${redirectUrl}?returnUrl=${encodeURIComponent(returnUrl)}`
+      : redirectUrl;
     window.location.replace(
-      `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClientId}&redirect_uri=${redirectUrl}`,
+      `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naverClientId}&redirect_uri=${redirectUri}`,
     );
   };
 
   const handleGoogleLogin = () => {
     setSession('socialMode', 'google');
+    const returnUrl = searchParams.get('returnUrl');
+    const redirectUri = returnUrl
+      ? `${redirectUrl}?returnUrl=${encodeURIComponent(returnUrl)}`
+      : redirectUrl;
     window.location.replace(
-      `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${redirectUrl}&response_type=code&scope=email profile`,
+      `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${redirectUri}&response_type=code&scope=email profile`,
     );
   };
 
