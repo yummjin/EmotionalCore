@@ -6,4 +6,5 @@ export const PATH = {
   LOGIN: '/login',
   USER: '/user',
   LEAVE: 'leave',
+  LIBRARY: '/library',
 };

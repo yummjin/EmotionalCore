@@ -15,6 +15,6 @@ export const NAVBAR_ITEMS = [
   },
   {
     label: '서재',
-    href: '/sample',
+    href: PATH.LIBRARY,
   },
 ];
