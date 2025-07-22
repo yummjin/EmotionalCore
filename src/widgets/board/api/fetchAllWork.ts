@@ -2,18 +2,23 @@ import { get, REQUEST } from '@/shared/api';
 import { Work } from '@/widgets/home/types';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchAllWork = async () => {
-  const response = await get<Work[]>({
+interface AllWorkResponse {
+  content: Work[];
+  totalCount: number;
+}
+
+const fetchAllWork = async ({ index }: { index: number }) => {
+  const response = await get<AllWorkResponse>({
     request: REQUEST.ALL_WORK,
-    params: { index: 1, num: 12 },
+    params: { index: index, num: 12 },
   });
   return response.data;
 };
 
-export const useFetchAllWork = () => {
+export const useFetchAllWork = (index: number) => {
   return useQuery({
-    queryKey: ['allWork'],
-    queryFn: fetchAllWork,
+    queryKey: ['allWork', index],
+    queryFn: () => fetchAllWork({ index }),
     retry: false,
   });
 };

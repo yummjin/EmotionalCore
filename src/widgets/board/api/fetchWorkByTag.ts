@@ -2,18 +2,27 @@ import { get, REQUEST } from '@/shared/api';
 import { Work } from '@/widgets/home/types';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchWorkByTag = async (tags: string[], type: string) => {
-  const response = await get<Work[]>({
+interface WorkByTagResponse {
+  content: Work[];
+  totalCount: number;
+}
+
+const fetchWorkByTag = async (tags: string[], type: string, index: number) => {
+  const response = await get<WorkByTagResponse>({
     request: REQUEST.WORK_BY_TAG,
-    params: { tags: tags.join(','), index: 1, num: 10, type: type },
+    params: { tags: tags.join(','), index: index, num: 10, type: type },
   });
   return response.data;
 };
 
-export const useFetchWorkByTag = (tags: string[], type: string) => {
+export const useFetchWorkByTag = (
+  tags: string[],
+  type: string,
+  index: number,
+) => {
   return useQuery({
-    queryKey: ['workByTag', tags, type],
-    queryFn: () => fetchWorkByTag(tags, type),
+    queryKey: ['workByTag', tags, type, index],
+    queryFn: () => fetchWorkByTag(tags, type, index),
     enabled: tags.length > 0,
     retry: false,
   });
