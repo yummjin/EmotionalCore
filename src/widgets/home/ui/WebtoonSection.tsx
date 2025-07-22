@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import type { Work } from '../types';
-import Image from 'next/image';
 import { useFetchWebtoon } from '../api';
+import { WorkItem } from '@/shared/ui';
 
 export default function WebtoonSection() {
   const { data } = useFetchWebtoon();
@@ -20,7 +19,7 @@ export default function WebtoonSection() {
         {data && (
           <div className="scrollbar-hide flex flex-nowrap gap-4 overflow-x-auto">
             {data.slice(0, 6).map(webtoon => (
-              <WebtoonItem key={webtoon.id} {...webtoon} />
+              <WorkItem key={webtoon.id} {...webtoon} size="webtoon" />
             ))}
           </div>
         )}
@@ -28,20 +27,3 @@ export default function WebtoonSection() {
     </div>
   );
 }
-
-const WebtoonItem = ({ title, authorName, coverImageUrl }: Work) => (
-  <div className="flex flex-1 flex-col gap-4">
-    <div className="relative h-[200px] w-[132px] flex-shrink-0 md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
-      <Image
-        src={`https://emotioncores.com${coverImageUrl}`}
-        alt={title}
-        fill
-        className="rounded-[10px] object-fill"
-      />
-    </div>
-    <div className="flex flex-col">
-      <p className="text-b1 font-medium">{title}</p>
-      <p className="text-b3 text-gray-500">{authorName}</p>
-    </div>
-  </div>
-);
