@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useFetchRecommend } from '../api';
 import type { Novel } from '../types';
+import { useState } from 'react';
 
 export default function RecommendSection({ type }: { type: 'poem' | 'novel' }) {
   const label = type === 'poem' ? '시' : '소설';
@@ -34,19 +35,23 @@ const RecommendItem = ({
   authorName,
   coverImageUrl,
   description,
-}: Novel) => (
-  <div className="flex min-w-[341px] flex-1 flex-shrink-0 cursor-pointer gap-6 rounded-[5px] border-[1px] border-gray-400 px-6 py-5">
-    <Image
-      src={`https://emotioncores.com${coverImageUrl}`}
-      alt={title}
-      height={166}
-      width={110}
-      className="rounded-[8px] object-fill object-center"
-    />
-    <div className="flex flex-1 flex-col">
-      <p className="text-b1 font-medium">{title}</p>
-      <p className="text-b2 mb-6 text-gray-500">{authorName}</p>
-      <p className="text-d1 text-gray-900">{description}</p>
+}: Novel) => {
+  const [imgSrc, setImgSrc] = useState(coverImageUrl);
+  return (
+    <div className="flex min-w-[341px] flex-1 flex-shrink-0 cursor-pointer gap-6 rounded-[5px] border-[1px] border-gray-400 px-6 py-5">
+      <Image
+        src={imgSrc}
+        onError={() => setImgSrc('/images/image-cover.png')}
+        alt={title}
+        height={166}
+        width={110}
+        className="rounded-[8px] object-fill object-center"
+      />
+      <div className="flex flex-1 flex-col">
+        <p className="text-b1 font-medium">{title}</p>
+        <p className="text-b2 mb-6 text-gray-500">{authorName}</p>
+        <p className="text-d1 text-gray-900">{description}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};

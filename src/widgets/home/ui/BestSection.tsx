@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useFetchBestWork } from '../api';
 import type { Work } from '../types';
+import { useState } from 'react';
 
 export default function BestSection() {
   const { data } = useFetchBestWork();
@@ -30,22 +31,27 @@ const BestItem = ({
   authorName,
   coverImageUrl,
   rank,
-}: Work & { rank: number }) => (
-  <div className="flex flex-shrink-0 flex-col gap-4">
-    <div className="relative h-[200px] w-[132px] md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
-      <Image
-        src={`https://emotioncores.com${coverImageUrl}`}
-        alt={title}
-        fill
-        className="rounded-[10px] object-fill"
-      />
-      <div className="bg-m-500/80 absolute rounded-tl-[10px] rounded-br-[10px] px-3 py-1 text-white">
-        {rank}
+}: Work & { rank: number }) => {
+  const [imgSrc, setImgSrc] = useState(coverImageUrl);
+
+  return (
+    <div className="flex flex-shrink-0 flex-col gap-4">
+      <div className="relative h-[200px] w-[132px] md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
+        <Image
+          src={imgSrc}
+          onError={() => setImgSrc('/images/image-cover.png')}
+          alt={title}
+          fill
+          className="rounded-[10px] object-fill"
+        />
+        <div className="bg-m-500/80 absolute rounded-tl-[10px] rounded-br-[10px] px-3 py-1 text-white">
+          {rank}
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <p className="text-b1 font-medium">{title}</p>
+        <p className="text-b3 text-gray-500">{authorName}</p>
       </div>
     </div>
-    <div className="flex flex-col">
-      <p className="text-b1 font-medium">{title}</p>
-      <p className="text-b3 text-gray-500">{authorName}</p>
-    </div>
-  </div>
-);
+  );
+};
