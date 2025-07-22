@@ -3,6 +3,7 @@
 import { cn } from '@/shared/utils';
 import { Dispatch, SetStateAction } from 'react';
 import { useFetchAllTag } from '../api';
+import { SelectorHeader } from '@/shared/ui';
 
 interface SelectorSectionProps {
   selectedTag: string[];
@@ -28,20 +29,11 @@ export default function SelectorSection({
 
   return (
     <div className="flex w-full flex-col gap-[30px]">
-      <div className="flex w-[100%] justify-between gap-10 md:w-[60%] md:justify-start lg:w-[40%]">
-        {buttons.map((button, index) => (
-          <button
-            key={index}
-            className={cn(
-              'text-b1 md:text-h1 cursor-pointer py-1 font-medium outline-none',
-              selectedType === button && 'border-m-500 border-b-4',
-            )}
-            onClick={() => setSelectedType(button)}
-          >
-            {button}
-          </button>
-        ))}
-      </div>
+      <SelectorHeader
+        buttons={buttons}
+        selectedType={selectedType}
+        setSelectedType={setSelectedType}
+      />
       {tags && (
         <div className="flex flex-wrap gap-4">
           {tags.map(({ id, name }) => (
