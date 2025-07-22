@@ -6,11 +6,13 @@ import { Input } from '@/shared/ui';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useState, useEffect, useRef } from 'react';
-import { cn } from '@/shared/utils';
+import { cn, removeCookie } from '@/shared/utils';
+import { useFetchUserInfo } from '@/shared/hooks';
 
 export default function UserSection({ user }: { user: User }) {
   const { username, email, description, links, tags, profileImageUrl } = user;
   const { mutate: submitUserUpdate, isPending } = useSubmitUserUpdate();
+  const { refetch: refetchUser } = useFetchUserInfo();
   const [tagInput, setTagInput] = useState('');
   const [tagList, setTagList] = useState<string[]>(tags || []);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -80,7 +82,13 @@ export default function UserSection({ user }: { user: User }) {
   };
 
   const onSubmit = (data: User) => {
-    submitUserUpdate(data);
+    submitUserUpdate(data, {
+      onSuccess: () => {
+        removeCookie('userInfo');
+        refetchUser();
+        window.location.reload();
+      },
+    });
   };
 
   return (
