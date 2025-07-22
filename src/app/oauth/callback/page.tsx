@@ -16,7 +16,9 @@ function OAuthCallbackContent() {
 
   const onSuccess = (data: { access_token: string }) => {
     console.log(data);
-    router.push(PATH.HOME);
+    // returnUrl이 있으면 해당 페이지로, 없으면 홈으로 이동
+    const returnUrl = searchParams.get('returnUrl');
+    router.push(returnUrl || PATH.HOME);
   };
 
   const onError = () => {
