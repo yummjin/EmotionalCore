@@ -24,7 +24,7 @@ const Pagination = ({
   className,
   ...rest
 }: PaginationProps) => {
-  const totalPage = Math.ceil(total / showItem);
+  const totalPage = Math.max(1, Math.ceil(total / showItem)); // 최소 1페이지는 보장
   const start = Math.max(
     1,
     Math.min(current - Math.floor(showPage / 2), totalPage - showPage + 1), // totalPage에서 마지막 showPage는 start값 변경되지 않도록 해서 shoePage 수 유지
