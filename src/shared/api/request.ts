@@ -20,6 +20,6 @@ export const REQUEST = {
   USER_INFO: '/api/mypage/mydetail',
   USER_UPDATE: '/api/mypage/update',
   USER_LEAVE: '/api/mypage/delete',
-  LIKED_WORK: '/api/work/like',
-  BOOKMARK_WORK: '/api/work/bookmark',
+  LIKED_WORK: '/api/storage/Like',
+  BOOKMARK_WORK: '/api/storage/bookmark',
 };
