@@ -1,7 +1,7 @@
 'use client';
 
 import { PATH } from '@/shared/constants';
-import { getSession } from '@/shared/utils';
+import { getSession, setCookie } from '@/shared/utils';
 import { useSubmitGoogleLogin, useSubmitKakaoLogin } from '@/widgets/oauth/api';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, Suspense } from 'react';
@@ -15,8 +15,9 @@ function OAuthCallbackContent() {
   const { mutate: submitKakaoLogin } = useSubmitKakaoLogin();
 
   const onSuccess = (data: { access_token: string }) => {
-    console.log(data);
-    // returnUrl이 있으면 해당 페이지로, 없으면 홈으로 이동
+    if (typeof window !== 'undefined') {
+      setCookie('userToken', data.access_token);
+    }
     const returnUrl = searchParams.get('returnUrl');
     router.push(returnUrl || PATH.HOME);
   };
