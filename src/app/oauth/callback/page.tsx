@@ -1,7 +1,8 @@
 'use client';
 
 import { PATH } from '@/shared/constants';
-import { getSession, setCookie } from '@/shared/utils';
+import { useFetchUserInfo } from '@/shared/hooks';
+import { getSession, removeCookie, setCookie } from '@/shared/utils';
 import { useSubmitGoogleLogin, useSubmitKakaoLogin } from '@/widgets/oauth/api';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, Suspense } from 'react';
@@ -13,11 +14,12 @@ function OAuthCallbackContent() {
 
   const { mutate: submitGoogleLogin } = useSubmitGoogleLogin();
   const { mutate: submitKakaoLogin } = useSubmitKakaoLogin();
+  const { refetch: refetchUserInfo } = useFetchUserInfo();
 
   const onSuccess = (data: { access_token: string }) => {
-    if (typeof window !== 'undefined') {
-      setCookie('userToken', data.access_token);
-    }
+    removeCookie('socialMode');
+    setCookie('userToken', data.access_token);
+    refetchUserInfo();
     const returnUrl = searchParams.get('returnUrl');
     router.push(returnUrl || PATH.HOME);
   };
