@@ -33,6 +33,13 @@ export default function WorkView({
     if (!data)
       return (
         <div className="text-b1 flex h-[calc(100vh-685px)] w-full items-center justify-center">
+          데이터를 가져오지 못했습니다.
+        </div>
+      );
+
+    if (data.length === 0)
+      return (
+        <div className="text-b1 flex h-[calc(100vh-685px)] w-full items-center justify-center">
           데이터가 없습니다.
         </div>
       );
