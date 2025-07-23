@@ -3,10 +3,11 @@
 import Image from 'next/image';
 import { AddIcon, Logo } from '../../../../public/icons';
 import NavButton from './NavButton';
-import { fetchLoginStatus } from '@/shared/utils';
+import { cn, fetchLoginStatus } from '@/shared/utils';
 import { NAVBAR_ITEMS } from '../model';
 import { PATH } from '@/shared/constants';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const LogoButton = () => {
   const router = useRouter();
@@ -48,6 +49,10 @@ const AddSection = () => {
 };
 
 export default function Navbar() {
+  const pathname = usePathname();
+  const isLibraryActive =
+    pathname === PATH.LIBRARY || pathname.startsWith(PATH.LIBRARY);
+
   return (
     <nav className="px-normal grid h-[116px] w-full grid-rows-2 items-center md:flex md:h-[68px] md:justify-center">
       <div className="md:max-w-medium lg:max-w-large hidden w-full items-center justify-between md:flex">
@@ -57,6 +62,15 @@ export default function Navbar() {
             {NAVBAR_ITEMS.map(item => (
               <NavButton key={item.label} href={item.href} label={item.label} />
             ))}
+            <Link
+              href={fetchLoginStatus() ? PATH.LIBRARY : PATH.LOGIN}
+              className={cn(
+                !isLibraryActive ? 'text-gray-500' : 'text-black',
+                'cursor-pointer outline-none',
+              )}
+            >
+              서재
+            </Link>
           </div>
         </div>
         <AddSection />
@@ -70,6 +84,15 @@ export default function Navbar() {
           {NAVBAR_ITEMS.map(item => (
             <NavButton key={item.label} href={item.href} label={item.label} />
           ))}
+          <Link
+            href={fetchLoginStatus() ? PATH.LIBRARY : PATH.LOGIN}
+            className={cn(
+              !isLibraryActive ? 'text-gray-500' : 'text-black',
+              'cursor-pointer outline-none',
+            )}
+          >
+            서재
+          </Link>
         </div>
       </div>
     </nav>
