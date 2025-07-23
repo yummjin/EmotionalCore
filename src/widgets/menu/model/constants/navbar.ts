@@ -1,4 +1,5 @@
 import { PATH } from '@/shared/constants';
+import { fetchLoginStatus } from '@/shared/utils';
 
 export const NAVBAR_ITEMS = [
   {
@@ -15,6 +16,6 @@ export const NAVBAR_ITEMS = [
   },
   {
     label: '서재',
-    href: PATH.LIBRARY,
+    href: fetchLoginStatus() ? PATH.LIBRARY : PATH.LOGIN,
   },
 ];
