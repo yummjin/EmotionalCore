@@ -2,7 +2,7 @@ import { get, REQUEST } from '@/shared/api';
 import { useQuery } from '@tanstack/react-query';
 import type { SearchResultResponse } from '../types';
 
-const fetchSearchResults = async (query: string) => {
+export const fetchSearchResults = async (query: string) => {
   const response = await get<SearchResultResponse>({
     request: REQUEST.SEARCH,
     params: { keyword: query },

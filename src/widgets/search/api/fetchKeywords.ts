@@ -2,7 +2,7 @@ import { get, REQUEST } from '@/shared/api';
 import { useQuery } from '@tanstack/react-query';
 import type { Keyword } from '../types';
 
-const fetchKeywords = async () => {
+export const fetchKeywords = async () => {
   const response = await get<Keyword[]>({
     request: REQUEST.KEYWORDS,
   });

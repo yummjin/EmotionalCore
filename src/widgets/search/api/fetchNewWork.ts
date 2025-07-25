@@ -2,7 +2,7 @@ import { get, REQUEST } from '@/shared/api';
 import type { Work } from '@/widgets/home/types';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchNewWork = async () => {
+export const fetchNewWork = async () => {
   const response = await get<Work[]>({
     request: REQUEST.NEW_WORK,
   });
