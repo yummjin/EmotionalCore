@@ -1,4 +1,5 @@
 import { get, REQUEST } from '@/shared/api';
+import { PG_SHOW_ITEM_SMALL } from '@/shared/constants';
 import { Work } from '@/shared/types';
 import { useQuery } from '@tanstack/react-query';
 
@@ -10,7 +11,12 @@ interface WorkByTagResponse {
 const fetchWorkByTag = async (tags: string[], type: string, index: number) => {
   const response = await get<WorkByTagResponse>({
     request: REQUEST.WORK_BY_TAG,
-    params: { tags: tags.join(','), index: index, num: 10, type: type },
+    params: {
+      tags: tags.join(','),
+      index: index,
+      num: PG_SHOW_ITEM_SMALL,
+      type: type,
+    },
   });
   return response.data;
 };

@@ -1,4 +1,5 @@
 import { REQUEST, userGet } from '@/shared/api';
+import { PG_SHOW_ITEM } from '@/shared/constants';
 import { Work } from '@/shared/types';
 import { useQuery } from '@tanstack/react-query';
 
@@ -10,7 +11,7 @@ interface LikedWorkResponse {
 const fetchLikedWork = async (index: number) => {
   const response = await userGet<LikedWorkResponse>({
     request: REQUEST.LIKED_WORK,
-    params: { index, num: 12 },
+    params: { index, num: PG_SHOW_ITEM },
   });
   return response.data;
 };

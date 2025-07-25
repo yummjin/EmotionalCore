@@ -1,4 +1,5 @@
 import { Work } from '@/shared/types';
+import { PG_SHOW_ITEM, PG_SHOW_PAGE } from '@/shared/constants';
 import React from 'react';
 import Pagination from './Pagination';
 import WorkItem from './WorkItem';
@@ -63,8 +64,8 @@ export default function WorkView({
         <Pagination
           current={index}
           total={totalCount}
-          showPage={5}
-          showItem={12}
+          showPage={PG_SHOW_PAGE}
+          showItem={PG_SHOW_ITEM}
           onChange={setIndex}
         />
       </div>

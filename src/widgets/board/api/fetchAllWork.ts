@@ -1,4 +1,5 @@
 import { get, REQUEST } from '@/shared/api';
+import { PG_SHOW_ITEM } from '@/shared/constants';
 import { Work } from '@/shared/types';
 import { useQuery } from '@tanstack/react-query';
 
@@ -10,7 +11,7 @@ interface AllWorkResponse {
 const fetchAllWork = async ({ index }: { index: number }) => {
   const response = await get<AllWorkResponse>({
     request: REQUEST.ALL_WORK,
-    params: { index: index, num: 12 },
+    params: { index: index, num: PG_SHOW_ITEM },
   });
   return response.data;
 };
