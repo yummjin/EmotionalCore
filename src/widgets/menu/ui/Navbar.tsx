@@ -20,7 +20,7 @@ const LogoButton = () => {
       onClick={() => router.push(PATH.HOME)}
       className="flex cursor-pointer items-center gap-3 outline-none"
     >
-      <Image src="/icons/logo.svg" alt="logo" />
+      <Image src="/icons/logo.svg" alt="logo" width={32} height={32} />
       <span className="text-h3 hidden font-medium md:block">감성코어</span>
     </button>
   );
@@ -32,7 +32,7 @@ const AddSection = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     <div className="flex items-center gap-8">
       <button className="flex cursor-pointer items-center gap-2">
-        <Image src="/icons/icon-add.svg" alt="logo" />
+        <Image src="/icons/icon-add.svg" alt="logo" width={24} height={24} />
         <span className="text-m-600 text-b1 font-normal md:font-medium">
           작품 등록
         </span>
