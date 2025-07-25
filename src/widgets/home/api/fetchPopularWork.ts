@@ -2,7 +2,7 @@ import { get, REQUEST } from '@/shared/api';
 import { useQuery } from '@tanstack/react-query';
 import type { Work } from '../types';
 
-const fetchPopularWork = async () => {
+export const fetchPopularWork = async () => {
   const response = await get<Work[]>({
     request: REQUEST.MONTHLY_POPULAR_WORK,
   });

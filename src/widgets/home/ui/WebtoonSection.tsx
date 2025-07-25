@@ -1,14 +1,11 @@
-'use client';
-
-import React from 'react';
-import { useFetchWebtoon } from '../api';
 import { WorkItem } from '@/shared/ui';
+import { fetchWebtoon } from '../api';
 
-export default function WebtoonSection() {
-  const { data } = useFetchWebtoon();
+export default async function WebtoonSection() {
+  const webtoon = await fetchWebtoon();
 
   return (
-    <div className="px-normal flex w-screen justify-center">
+    <section className="px-normal flex w-screen justify-center">
       <div className="md:max-w-medium lg:max-w-large flex w-full flex-col gap-[20px] lg:gap-[30px]">
         <div className="flex justify-between">
           <span className="text-h4 md:text-h1 font-medium">추천 웹툰</span>
@@ -16,14 +13,14 @@ export default function WebtoonSection() {
             더보기
           </button>
         </div>
-        {data && (
+        {webtoon && (
           <div className="scrollbar-hide flex flex-nowrap gap-4 overflow-x-auto">
-            {data.slice(0, 6).map(webtoon => (
+            {webtoon.slice(0, 6).map(webtoon => (
               <WorkItem key={webtoon.id} {...webtoon} size="webtoon" />
             ))}
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

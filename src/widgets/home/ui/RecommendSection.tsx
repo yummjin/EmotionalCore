@@ -1,16 +1,22 @@
 'use client';
 
 import Image from 'next/image';
-import { useFetchRecommend } from '../api';
 import type { Novel } from '../types';
 import { useState } from 'react';
 
-export default function RecommendSection({ type }: { type: 'poem' | 'novel' }) {
+interface RecommendSectionProps {
+  type: 'poem' | 'novel';
+  data: Novel[];
+}
+
+export default function RecommendSection({
+  type,
+  data,
+}: RecommendSectionProps) {
   const label = type === 'poem' ? '시' : '소설';
-  const { data } = useFetchRecommend(type);
 
   return (
-    <div className="px-normal flex w-screen justify-center">
+    <section className="px-normal flex w-screen justify-center">
       <div className="md:max-w-medium lg:max-w-large sm flex w-full flex-col gap-[20px] lg:gap-[30px]">
         <div className="flex justify-between">
           <span className="text-h4 md:text-h1 font-medium">추천 {label}</span>
@@ -26,7 +32,7 @@ export default function RecommendSection({ type }: { type: 'poem' | 'novel' }) {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

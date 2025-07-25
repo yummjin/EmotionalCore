@@ -2,7 +2,7 @@ import { get, REQUEST } from '@/shared/api';
 import { useQuery } from '@tanstack/react-query';
 import type { Novel } from '../types';
 
-const fetchRecommend = async (type: 'poem' | 'novel') => {
+export const fetchRecommend = async (type: 'poem' | 'novel') => {
   const request =
     type === 'poem' ? REQUEST.RECOMMEND_POEM : REQUEST.RECOMMEND_NOVEL;
   const response = await get<Novel[]>({

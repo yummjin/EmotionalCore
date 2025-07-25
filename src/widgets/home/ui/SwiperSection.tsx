@@ -6,19 +6,20 @@ import 'swiper/css/navigation';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { useFetchBestAuthor, useFetchPopularWork } from '../api';
 import type { Work, Author } from '../types';
 import { useState } from 'react';
 
-export default function SwiperSection({ label }: { label: string }) {
-  const { data: popularWork } = useFetchPopularWork();
-  const { data: bestAuthor } = useFetchBestAuthor();
-
-  const data = label === '이달의 인기 작품' ? popularWork : bestAuthor;
+export default function SwiperSection({
+  label,
+  data,
+}: {
+  label: string;
+  data: Work[] | Author[];
+}) {
   const isWorkType = label === '이달의 인기 작품';
 
   return (
-    <div className="px-normal flex w-screen justify-center">
+    <section className="px-normal flex w-screen justify-center">
       <div className="md:max-w-medium lg:max-w-large flex w-full flex-col gap-[20px] lg:gap-[30px]">
         <p className="text-h4 md:text-h1 font-medium">{label}</p>
         {data && (
@@ -49,7 +50,7 @@ export default function SwiperSection({ label }: { label: string }) {
           </Swiper>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

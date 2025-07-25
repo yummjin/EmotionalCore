@@ -2,7 +2,7 @@ import { CATEGORY } from '../model';
 
 export default function CategorySection() {
   return (
-    <div className="px-normal mb-[130px] hidden w-screen flex-col items-center justify-center gap-10 md:flex">
+    <section className="px-normal mb-[130px] hidden w-screen flex-col items-center justify-center gap-10 md:flex">
       <div className="flex flex-col items-center justify-center">
         <p className="text-h1 font-medium">
           아직 관심 작품을 발견하지 못하셨나요?
@@ -16,7 +16,7 @@ export default function CategorySection() {
           <CategoryItem key={category} category={category} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }
 

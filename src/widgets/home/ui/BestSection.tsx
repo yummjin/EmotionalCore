@@ -1,15 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useFetchBestWork } from '../api';
 import type { Work } from '../types';
 import { useState } from 'react';
 
-export default function BestSection() {
-  const { data } = useFetchBestWork();
-
+export default function BestSection({ data }: { data: Work[] }) {
   return (
-    <div className="bg-m-50 px-normal flex w-screen justify-center py-8 md:py-20">
+    <section className="bg-m-50 px-normal flex w-screen justify-center py-8 md:py-20">
       <div className="md:max-w-medium lg:max-w-large flex w-full flex-col gap-[20px] lg:gap-[30px]">
         <p className="text-h4 md:text-h1 font-medium">
           감성코어 인기 best 작품 순위
@@ -22,7 +19,7 @@ export default function BestSection() {
           </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 
