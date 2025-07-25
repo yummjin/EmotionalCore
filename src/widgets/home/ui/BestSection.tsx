@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import type { Work } from '../types';
+import type { Work } from '@/shared/types';
 import { useState } from 'react';
 
 export default function BestSection({ data }: { data: Work[] }) {

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import type { Work } from '@/widgets/home/types';
+import type { Work } from '@/shared/types';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const workItemImageWrapper = cva('relative rounded-[10px]', {

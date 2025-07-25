@@ -1,4 +1,4 @@
-import { Work } from '@/widgets/home/types';
+import { Work } from '@/shared/types';
 import React from 'react';
 import Pagination from './Pagination';
 import WorkItem from './WorkItem';

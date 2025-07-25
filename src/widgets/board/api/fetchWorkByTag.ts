@@ -1,5 +1,5 @@
 import { get, REQUEST } from '@/shared/api';
-import { Work } from '@/widgets/home/types';
+import { Work } from '@/shared/types';
 import { useQuery } from '@tanstack/react-query';
 
 interface WorkByTagResponse {

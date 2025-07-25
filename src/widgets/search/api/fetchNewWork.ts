@@ -1,5 +1,5 @@
 import { get, REQUEST } from '@/shared/api';
-import type { Work } from '@/widgets/home/types';
+import type { Work } from '@/shared/types';
 import { useQuery } from '@tanstack/react-query';
 
 export const fetchNewWork = async () => {

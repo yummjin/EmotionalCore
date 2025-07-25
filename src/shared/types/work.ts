@@ -6,11 +6,11 @@ export type Work = {
   coverImageUrl: string;
 };
 
-export type Novel = {
-  id: number;
-  authorId: number;
-  authorName: string;
-  title: string;
+export type WorkDetail = Work & {
   description: string;
-  coverImageUrl: string;
+  type: string;
+  viewCount: number;
+  likeCount: number;
+  bookmarkCount: number;
+  tags: string[];
 };

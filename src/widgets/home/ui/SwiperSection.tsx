@@ -6,7 +6,8 @@ import 'swiper/css/navigation';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import type { Work, Author } from '../types';
+import type { Work } from '@/shared/types';
+import type { Author } from '@/widgets/home/types';
 import { useState } from 'react';
 
 export default function SwiperSection({

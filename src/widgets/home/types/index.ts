@@ -1,2 +1,2 @@
-export * from './work';
 export * from './author';
+export * from './novel';
