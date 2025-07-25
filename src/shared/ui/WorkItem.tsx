@@ -36,6 +36,8 @@ export default function WorkItem({
           alt={title}
           fill
           className="rounded-[10px] object-cover object-center"
+          placeholder="blur"
+          blurDataURL="/images/image-cover.png"
         />
       </div>
       <div className="flex flex-col">
