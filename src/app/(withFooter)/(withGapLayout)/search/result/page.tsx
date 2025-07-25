@@ -3,16 +3,17 @@ import { ResultSection, SearchBar } from '@/widgets/search/ui';
 import React, { Suspense } from 'react';
 
 interface ResultPageProps {
-  searchParams: { query?: string };
+  searchParams: Promise<{ query?: string }>;
 }
 
 export default async function ResultPage({ searchParams }: ResultPageProps) {
-  const query = searchParams.query || '';
-  const data = await fetchSearchResults(query);
+  const { query } = await searchParams;
+  const searchQuery = query || '';
+  const data = await fetchSearchResults(searchQuery);
 
   return (
     <>
-      <SearchBar query={query} />
+      <SearchBar query={searchQuery} />
       <Suspense fallback={<div></div>}>
         <ResultSection data={data} />
       </Suspense>
