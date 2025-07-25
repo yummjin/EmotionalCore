@@ -1,13 +1,16 @@
 'use client';
 
-import Image from 'next/image';
-import { AddIcon, Logo } from '../../../../public/icons';
-import NavButton from './NavButton';
-import { cn, fetchLoginStatus } from '@/shared/utils';
-import { NAVBAR_ITEMS } from '../model';
+import { useEffect, useState } from 'react';
+
 import { PATH } from '@/shared/constants';
-import { usePathname, useRouter } from 'next/navigation';
+import { cn, fetchLoginStatus } from '@/shared/utils';
+
+import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+
+import { NAVBAR_ITEMS } from '../model';
+import NavButton from './NavButton';
 
 const LogoButton = () => {
   const router = useRouter();
@@ -17,19 +20,19 @@ const LogoButton = () => {
       onClick={() => router.push(PATH.HOME)}
       className="flex cursor-pointer items-center gap-3 outline-none"
     >
-      <Image src={Logo} alt="logo" />
+      <Image src="/icons/logo.svg" alt="logo" />
       <span className="text-h3 hidden font-medium md:block">감성코어</span>
     </button>
   );
 };
 
-const AddSection = () => {
+const AddSection = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   const router = useRouter();
 
   return (
     <div className="flex items-center gap-8">
       <button className="flex cursor-pointer items-center gap-2">
-        <Image src={AddIcon} alt="logo" />
+        <Image src="/icons/icon-add.svg" alt="logo" />
         <span className="text-m-600 text-b1 font-normal md:font-medium">
           작품 등록
         </span>
@@ -37,7 +40,7 @@ const AddSection = () => {
       <button
         className="size-[32px] cursor-pointer rounded-full bg-gray-300 outline-none"
         onClick={() => {
-          if (fetchLoginStatus()) {
+          if (isLoggedIn) {
             router.push(PATH.USER);
           } else {
             router.push(PATH.LOGIN);
@@ -50,8 +53,14 @@ const AddSection = () => {
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const isLibraryActive =
     pathname === PATH.LIBRARY || pathname.startsWith(PATH.LIBRARY);
+
+  useEffect(() => {
+    setIsLoggedIn(!!fetchLoginStatus());
+  }, []);
 
   return (
     <nav className="px-normal grid h-[116px] w-full grid-rows-2 items-center md:flex md:h-[68px] md:justify-center">
@@ -63,21 +72,22 @@ export default function Navbar() {
               <NavButton key={item.label} href={item.href} label={item.label} />
             ))}
             <Link
-              href={fetchLoginStatus() ? PATH.LIBRARY : PATH.LOGIN}
+              href={isLoggedIn ? PATH.LIBRARY : PATH.LOGIN}
               className={cn(
                 !isLibraryActive ? 'text-gray-500' : 'text-black',
                 'cursor-pointer outline-none',
               )}
+              suppressHydrationWarning
             >
               서재
             </Link>
           </div>
         </div>
-        <AddSection />
+        <AddSection isLoggedIn={isLoggedIn} />
       </div>
       <div className="flex w-full items-center justify-between gap-13 md:hidden">
         <LogoButton />
-        <AddSection />
+        <AddSection isLoggedIn={isLoggedIn} />
       </div>
       <div className="flex w-full items-center justify-between md:hidden">
         <div className="text-b1 flex w-full items-center justify-between font-medium">
@@ -85,11 +95,12 @@ export default function Navbar() {
             <NavButton key={item.label} href={item.href} label={item.label} />
           ))}
           <Link
-            href={fetchLoginStatus() ? PATH.LIBRARY : PATH.LOGIN}
+            href={isLoggedIn ? PATH.LIBRARY : PATH.LOGIN}
             className={cn(
               !isLibraryActive ? 'text-gray-500' : 'text-black',
               'cursor-pointer outline-none',
             )}
+            suppressHydrationWarning
           >
             서재
           </Link>
