@@ -3,6 +3,8 @@ export const REQUEST = {
   ALL_WORK: '/api/work/all',
   WORK_TAG: '/api/work/tag',
   WORK_BY_TAG: '/api/work/type/tag',
+  WORK_DETAIL: '/api/work/series/info',
+  WORK_EPISODE: '/api/work/series',
   BEST_TODAY: '/api/work/best/today',
   MONTHLY_POPULAR_WORK: '/api/work/popular/monthly',
   MONTHLY_BEST_AUTHOR: '/api/authors/best/monthly',
