@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import type { AuthorDto, SearchResultResponse, WorkDto } from '../types';
 import { useEffect, useState } from 'react';
@@ -22,7 +24,7 @@ export default function ResultSection({
     if (data.seriesDetailDTOList.length === 0)
       return <div className="text-h3">작품 검색 결과가 없습니다.</div>;
     return (
-      <div className="flex w-full flex-col">
+      <section className="flex w-full flex-col">
         <p className="text-h3">작품 {data.seriesDetailDTOList.length}개</p>
         <div className="flex flex-col divide-y divide-gray-300">
           {data.seriesDetailDTOList.slice(0, numberOfWork).map(work => (
@@ -39,7 +41,7 @@ export default function ResultSection({
             </div>
           )}
         </div>
-      </div>
+      </section>
     );
   };
 
@@ -89,7 +91,7 @@ const WorkItem = ({
 }: WorkDto) => (
   <div className="flex gap-[30px] overflow-hidden py-6">
     <Image
-      src={`https://emotioncores.com${coverImageUrl}`}
+      src={coverImageUrl}
       alt={title}
       width={154}
       height={227}
@@ -144,7 +146,7 @@ const AuthorItem = ({
   <div className="flex gap-[30px] py-6">
     <div className="relative size-[134px] rounded-full">
       <Image
-        src={`https://emotioncores.com${profileImageUrl}`}
+        src={profileImageUrl}
         alt={authorName}
         fill
         sizes="134px"

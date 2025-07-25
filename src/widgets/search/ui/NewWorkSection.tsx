@@ -1,24 +1,24 @@
-import { useFetchNewWork } from '../api';
+import { fetchNewWork } from '../api';
 import { WorkItem } from '@/shared/ui';
 
-export default function WebtoonSection() {
-  const { data } = useFetchNewWork();
+export default async function WebtoonSection() {
+  const newWorks = await fetchNewWork();
 
   return (
-    <div className="md:max-w-medium lg:max-w-large flex w-full flex-col gap-[20px] lg:gap-[30px]">
+    <section className="md:max-w-medium lg:max-w-large flex w-full flex-col gap-[20px] lg:gap-[30px]">
       <div className="flex justify-between">
         <span className="text-h4 md:text-h1 font-medium">신규 작품</span>
         <button className="text-b2 cursor-pointer text-gray-500 outline-none">
           더보기
         </button>
       </div>
-      {data && (
+      {newWorks && (
         <div className="scrollbar-hide flex flex-nowrap gap-4 overflow-x-auto">
-          {data.slice(0, 6).map(webtoon => (
+          {newWorks.slice(0, 6).map(webtoon => (
             <WorkItem key={webtoon.id} {...webtoon} size="webtoon" />
           ))}
         </div>
       )}
-    </div>
+    </section>
   );
 }
