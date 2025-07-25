@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import type { Work } from '@/shared/types';
 import { cva, type VariantProps } from 'class-variance-authority';
+import Link from 'next/link';
 
 const workItemImageWrapper = cva('relative rounded-[10px]', {
   variants: {
@@ -20,6 +21,7 @@ const workItemImageWrapper = cva('relative rounded-[10px]', {
 });
 
 export default function WorkItem({
+  id,
   title,
   authorName,
   coverImageUrl,
@@ -28,7 +30,7 @@ export default function WorkItem({
 }: Work & { className?: string } & VariantProps<typeof workItemImageWrapper>) {
   const [imgSrc, setImgSrc] = useState(coverImageUrl);
   return (
-    <div className="flex cursor-pointer flex-col gap-4">
+    <Link href={`/work/${id}`} className="flex cursor-pointer flex-col gap-4">
       <div className={workItemImageWrapper({ size, className })}>
         <Image
           src={imgSrc}
@@ -44,7 +46,7 @@ export default function WorkItem({
         <p className="text-b1 font-medium">{title}</p>
         <p className="text-b3 text-gray-500">{authorName}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 

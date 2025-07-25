@@ -28,8 +28,12 @@ export default function SwiperSection({
             modules={[Navigation]}
             navigation={true}
             breakpoints={{
-              640: {
+              375: {
                 slidesPerView: 1,
+                spaceBetween: 16,
+              },
+              640: {
+                slidesPerView: 2,
                 spaceBetween: 16,
               },
               768: {

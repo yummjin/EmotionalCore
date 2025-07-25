@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import type { AuthorDto, SearchResultResponse, WorkDto } from '../types';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export default function ResultSection({
   data,
@@ -80,6 +81,7 @@ export default function ResultSection({
 }
 
 const WorkItem = ({
+  id,
   coverImageUrl,
   title,
   authorName,
@@ -89,7 +91,10 @@ const WorkItem = ({
   bookmarkCount,
   tags,
 }: WorkDto) => (
-  <div className="flex gap-[30px] overflow-hidden py-6">
+  <Link
+    href={`/work/${id}`}
+    className="flex cursor-pointer gap-[30px] overflow-hidden py-6"
+  >
     <Image
       src={coverImageUrl}
       alt={title}
@@ -134,7 +139,7 @@ const WorkItem = ({
         ))}
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const AuthorItem = ({

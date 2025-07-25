@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import type { Work } from '@/shared/types';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function BestSection({ data }: { data: Work[] }) {
   return (
@@ -24,6 +25,7 @@ export default function BestSection({ data }: { data: Work[] }) {
 }
 
 const BestItem = ({
+  id,
   title,
   authorName,
   coverImageUrl,
@@ -32,7 +34,7 @@ const BestItem = ({
   const [imgSrc, setImgSrc] = useState(coverImageUrl);
 
   return (
-    <div className="flex flex-shrink-0 flex-col gap-4">
+    <Link href={`/work/${id}`} className="flex flex-shrink-0 flex-col gap-4">
       <div className="relative h-[200px] w-[132px] md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
         <Image
           src={imgSrc}
@@ -49,6 +51,6 @@ const BestItem = ({
         <p className="text-b1 font-medium">{title}</p>
         <p className="text-b3 text-gray-500">{authorName}</p>
       </div>
-    </div>
+    </Link>
   );
 };
