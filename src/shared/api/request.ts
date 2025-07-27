@@ -26,4 +26,5 @@ export const REQUEST = {
   BOOKMARK_WORK: '/api/storage/bookmark',
   COMMENT_WORK: '/api/storage/comment',
   RECENT_VIEW_WORK: '/api/member/list/view',
+  EPISODE: '/api/work/episode',
 };
