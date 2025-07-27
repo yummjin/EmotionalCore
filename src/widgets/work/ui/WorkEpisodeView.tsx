@@ -2,9 +2,8 @@
 
 import { PG_SHOW_ITEM, PG_SHOW_PAGE } from '@/shared/constants';
 import type { Episode } from '@/shared/types';
-import { Pagination } from '@/shared/ui';
+import { ImageItem, Pagination } from '@/shared/ui';
 import { getDate } from '@/shared/utils';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -54,29 +53,25 @@ export default function WorkEpisodeView({
 const WorkEpisodeItem = ({ episode }: WorkEpisodeItemProps) => {
   const { title, coverImageUrl, viewCount, createdAt, number, seriesId } =
     episode;
-  const [imgSrc, setImgSrc] = useState(
-    coverImageUrl || '/images/image-cover.png',
-  );
   const router = useRouter();
 
   return (
     <div
-      className="flex w-full cursor-pointer gap-4"
+      className="flex w-full cursor-pointer gap-[30px]"
       onClick={() => {
         router.push(`/work/${seriesId}/episode/${number}`);
       }}
     >
-      <div className="relative h-[200px] w-[150px] overflow-hidden rounded-[10px] border">
-        <Image
+      <div className="relative h-[200px] w-[150px] overflow-hidden rounded-[10px]">
+        <ImageItem
           className="object-cover object-center"
-          src={imgSrc}
-          onError={() => setImgSrc('/images/image-cover.png')}
+          src={coverImageUrl}
           alt={title}
           fill
         />
       </div>
       <div className="flex h-full flex-col justify-center gap-1">
-        <span className="text-h3">{`${number}화 ${title}`}</span>
+        <span className="text-h3 font-medium">{`${number}화 ${title}`}</span>
         <p className="text-b2 font-medium text-gray-700">
           작가명 <span className="text-gray-500">{viewCount}</span>
         </p>
