@@ -12,7 +12,7 @@ export default async function WorkEpisodeSection({
 }) {
   const { content, totalCount } = await fetchWorkEpisode(id, index);
   return (
-    <section className="flex w-full flex-col gap-2">
+    <section className="flex w-full flex-col gap-4">
       <div className="flex w-full justify-between">
         <span>작품 회차 {totalCount}개</span>
       </div>

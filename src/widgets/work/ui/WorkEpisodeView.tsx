@@ -3,6 +3,7 @@
 import { PG_SHOW_ITEM, PG_SHOW_PAGE } from '@/shared/constants';
 import type { Episode } from '@/shared/types';
 import { Pagination } from '@/shared/ui';
+import { getDate } from '@/shared/utils';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -51,19 +52,30 @@ export default function WorkEpisodeView({
 }
 
 const WorkEpisodeItem = ({ episode }: WorkEpisodeItemProps) => {
-  const { title, coverImageUrl } = episode;
+  const { title, coverImageUrl, viewCount, createdAt, number } = episode;
   const [imgSrc, setImgSrc] = useState(coverImageUrl);
 
   return (
-    <div className="flex w-full">
-      <Image
-        src={imgSrc}
-        onError={() => setImgSrc('/images/image-cover.png')}
-        alt={title}
-        width={100}
-        height={100}
-      />
-      <span>{title}</span>
+    <div className="flex w-full gap-4">
+      <div className="relative h-[200px] w-[150px] overflow-hidden rounded-[10px] border">
+        <Image
+          className="object-cover object-center"
+          src={imgSrc}
+          onError={() => setImgSrc('/images/image-cover.png')}
+          alt={title}
+          fill
+        />
+      </div>
+      <div className="flex h-full flex-col justify-center gap-1">
+        <span className="text-h3">{`${number}화 ${title}`}</span>
+        <p className="text-b2 font-medium text-gray-700">
+          작가명 <span className="text-gray-500">{viewCount}</span>
+        </p>
+        <p className="text-b2 font-medium text-gray-700">
+          조회수 <span className="text-gray-500">{viewCount}</span>
+        </p>
+        <span className="text-b2 mt-1">{getDate(createdAt, 'YYYY.MM.DD')}</span>
+      </div>
     </div>
   );
 };
