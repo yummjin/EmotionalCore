@@ -15,7 +15,7 @@ interface WorkSectionProps {
 }
 
 export default function WorkSection({ selectedType }: WorkSectionProps) {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const { data: likedWorks, isFetching } = useFetchLikedWork(index);
   const { data: bookmarkWorks, isFetching: isBookmarkWorksFetching } =
     useFetchBookmarkWork(index);
@@ -25,7 +25,7 @@ export default function WorkSection({ selectedType }: WorkSectionProps) {
     useFetchRecentViewWork(index);
 
   useEffect(() => {
-    setIndex(1);
+    setIndex(0);
   }, [selectedType]);
 
   const renderWorks = () => {

@@ -11,7 +11,7 @@ export default function WorkSection({
   selectedTag: string[];
   selectedType: string;
 }) {
-  const [index, setIndex] = useState(1); // setIndex는 페이지네이션 등에서 사용될 예정
+  const [index, setIndex] = useState(0); // setIndex는 페이지네이션 등에서 사용될 예정
   const { data: allWorks, isFetching: isAllWorksFetching } =
     useFetchAllWork(index);
 
@@ -22,7 +22,7 @@ export default function WorkSection({
   );
 
   useEffect(() => {
-    setIndex(1);
+    setIndex(0);
   }, [selectedTag, selectedType]);
 
   const renderWorks = () => {
