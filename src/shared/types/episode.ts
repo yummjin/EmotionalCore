@@ -6,3 +6,5 @@ export type Episode = {
   viewCount: number;
   createdAt: string;
 };
+
+export type EpisodeDetail = Episode & { description: string; contents: string };
