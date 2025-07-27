@@ -15,6 +15,6 @@ export const buttons = [
   {
     image: '/icons/icon-leave.svg',
     label: '탈퇴하기',
-    href: PATH.USER + PATH.LEAVE,
+    href: PATH.USER + '/' + PATH.LEAVE,
   },
 ];

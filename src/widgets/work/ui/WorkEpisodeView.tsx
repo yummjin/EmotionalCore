@@ -52,11 +52,20 @@ export default function WorkEpisodeView({
 }
 
 const WorkEpisodeItem = ({ episode }: WorkEpisodeItemProps) => {
-  const { title, coverImageUrl, viewCount, createdAt, number } = episode;
-  const [imgSrc, setImgSrc] = useState(coverImageUrl);
+  const { title, coverImageUrl, viewCount, createdAt, number, seriesId } =
+    episode;
+  const [imgSrc, setImgSrc] = useState(
+    coverImageUrl || '/images/image-cover.png',
+  );
+  const router = useRouter();
 
   return (
-    <div className="flex w-full gap-4">
+    <div
+      className="flex w-full cursor-pointer gap-4"
+      onClick={() => {
+        router.push(`/work/${seriesId}/episode/${number}`);
+      }}
+    >
       <div className="relative h-[200px] w-[150px] overflow-hidden rounded-[10px] border">
         <Image
           className="object-cover object-center"
