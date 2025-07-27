@@ -12,7 +12,11 @@ export default async function WorkPage({
   const { index } = await searchParams;
   return (
     <>
-      <Suspense fallback={<div></div>}>
+      <Suspense
+        fallback={
+          <div className="grid h-[calc(100vh-400px)] w-full place-items-center" />
+        }
+      >
         <WorkInfoSection id={id} />
         <WorkEpisodeSection id={id} index={Number(index) || 0} />
       </Suspense>
