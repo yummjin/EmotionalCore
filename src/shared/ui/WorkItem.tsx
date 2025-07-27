@@ -1,10 +1,8 @@
-'use client';
-
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import type { Work } from '@/shared/types';
 import { cva, type VariantProps } from 'class-variance-authority';
 import Link from 'next/link';
+import ImageItem from './ImageItem';
 
 const workItemImageWrapper = cva('relative rounded-[10px]', {
   variants: {
@@ -28,18 +26,14 @@ export default function WorkItem({
   className,
   size,
 }: Work & { className?: string } & VariantProps<typeof workItemImageWrapper>) {
-  const [imgSrc, setImgSrc] = useState(coverImageUrl);
   return (
     <Link href={`/work/${id}`} className="flex cursor-pointer flex-col gap-4">
       <div className={workItemImageWrapper({ size, className })}>
-        <Image
-          src={imgSrc}
-          onError={() => setImgSrc('/images/image-cover.png')}
+        <ImageItem
+          src={coverImageUrl}
           alt={title}
           fill
           className="rounded-[10px] object-cover object-center"
-          placeholder="blur"
-          blurDataURL="/images/image-cover.png"
         />
       </div>
       <div className="flex flex-col">

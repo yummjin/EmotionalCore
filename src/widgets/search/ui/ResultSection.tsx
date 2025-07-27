@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import type { AuthorDto, SearchResultResponse, WorkDto } from '../types';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { ImageItem } from '@/shared/ui';
 
 export default function ResultSection({
   data,
@@ -95,7 +95,7 @@ const WorkItem = ({
     href={`/work/${id}`}
     className="flex cursor-pointer gap-[30px] overflow-hidden py-6"
   >
-    <Image
+    <ImageItem
       src={coverImageUrl}
       alt={title}
       width={154}
@@ -150,11 +150,10 @@ const AuthorItem = ({
 }: AuthorDto) => (
   <div className="flex gap-[30px] py-6">
     <div className="relative size-[134px] rounded-full">
-      <Image
+      <ImageItem
         src={profileImageUrl}
         alt={authorName}
         fill
-        sizes="134px"
         className="rounded-full object-fill object-center"
       />
     </div>

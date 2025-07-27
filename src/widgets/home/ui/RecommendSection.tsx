@@ -1,9 +1,6 @@
-'use client';
-
-import Image from 'next/image';
 import type { Novel } from '../types';
-import { useState } from 'react';
 import Link from 'next/link';
+import { ImageItem } from '@/shared/ui';
 
 interface RecommendSectionProps {
   type: 'poem' | 'novel';
@@ -44,15 +41,13 @@ const RecommendItem = ({
   coverImageUrl,
   description,
 }: Novel) => {
-  const [imgSrc, setImgSrc] = useState(coverImageUrl);
   return (
     <Link
       href={`/work/${id}`}
       className="flex min-w-[341px] flex-1 flex-shrink-0 cursor-pointer gap-6 rounded-[5px] border-[1px] border-gray-400 px-6 py-5"
     >
-      <Image
-        src={imgSrc}
-        onError={() => setImgSrc('/images/image-cover.png')}
+      <ImageItem
+        src={coverImageUrl}
         alt={title}
         height={166}
         width={110}

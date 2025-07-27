@@ -1,9 +1,6 @@
-'use client';
-
-import Image from 'next/image';
 import type { Work } from '@/shared/types';
-import { useState } from 'react';
 import Link from 'next/link';
+import { ImageItem } from '@/shared/ui';
 
 export default function BestSection({ data }: { data: Work[] }) {
   return (
@@ -31,14 +28,11 @@ const BestItem = ({
   coverImageUrl,
   rank,
 }: Work & { rank: number }) => {
-  const [imgSrc, setImgSrc] = useState(coverImageUrl);
-
   return (
     <Link href={`/work/${id}`} className="flex flex-shrink-0 flex-col gap-4">
       <div className="relative h-[200px] w-[132px] md:h-[220px] md:w-[140px] lg:h-[285px] lg:w-[203px]">
-        <Image
-          src={imgSrc}
-          onError={() => setImgSrc('/images/image-cover.png')}
+        <ImageItem
+          src={coverImageUrl}
           alt={title}
           fill
           className="rounded-[10px] object-fill"

@@ -3,12 +3,11 @@
 import 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import type { Work } from '@/shared/types';
 import type { Author } from '@/widgets/home/types';
-import { useState } from 'react';
+import { ImageItem } from '@/shared/ui';
 
 export default function SwiperSection({
   label,
@@ -69,14 +68,11 @@ const SwiperItem = ({
   const displayDescription = isWorkType
     ? authorName
     : (rest as Author).description;
-  const [imgSrc, setImgSrc] = useState(coverImageUrl);
 
   return (
     <div className="relative flex h-[300px] w-full flex-col gap-2 rounded-[8px]">
-      <Image
-        sizes="auto"
-        src={imgSrc}
-        onError={() => setImgSrc('/images/image-cover.png')}
+      <ImageItem
+        src={coverImageUrl}
         alt={displayTitle}
         fill
         className="rounded-[8px] object-fill object-center"
