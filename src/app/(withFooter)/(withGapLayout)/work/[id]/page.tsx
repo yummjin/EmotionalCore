@@ -14,7 +14,7 @@ export default async function WorkPage({
     <>
       <Suspense fallback={<div></div>}>
         <WorkInfoSection id={id} />
-        <WorkEpisodeSection id={id} index={Number(index) || 1} />
+        <WorkEpisodeSection id={id} index={Number(index) || 0} />
       </Suspense>
     </>
   );
