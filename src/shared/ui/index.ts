@@ -4,3 +4,5 @@ export { default as WorkItem } from './WorkItem';
 export { default as WorkView } from './WorkView';
 export { default as SelectorHeader } from './SelectorHeader';
 export { default as ImageItem } from './ImageItem';
+export { default as CategoryItem } from './CategoryItem';
+export { default as BestItem } from './BestItem';
