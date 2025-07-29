@@ -6,7 +6,9 @@ export function middleware(request: NextRequest) {
   console.log(pathname, search);
 
   const needAuth =
-    pathname.startsWith(PATH.USER) || pathname.startsWith(PATH.LIBRARY);
+    pathname.startsWith(PATH.USER) ||
+    pathname.startsWith(PATH.LIBRARY) ||
+    pathname.startsWith(PATH.WORK_REGISTER);
 
   if (needAuth) {
     const userToken = request.cookies.get('userToken')?.value;

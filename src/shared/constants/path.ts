@@ -7,4 +7,6 @@ export const PATH = {
   USER: '/user',
   LEAVE: 'leave',
   LIBRARY: '/library',
+  WORK_REGISTER: '/work/register',
+  WORK: '/work',
 };
