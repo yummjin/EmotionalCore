@@ -1,5 +1,9 @@
 import { fetchEpisode } from '@/widgets/episode/api';
-import { EpisodeContent, EpisodeHeader } from '@/widgets/episode/ui';
+import {
+  EpisodeContent,
+  EpisodeHeader,
+  CommentSection,
+} from '@/widgets/episode/ui';
 import React from 'react';
 
 export default async function WorkEpisodePage({
@@ -14,7 +18,7 @@ export default async function WorkEpisodePage({
   );
 
   return (
-    <div className="flex w-full flex-col gap-10">
+    <div className="flex min-h-screen w-full flex-col gap-10">
       <EpisodeHeader
         title={title}
         createdAt={createdAt}
@@ -22,6 +26,7 @@ export default async function WorkEpisodePage({
         number={Number(episodeId)}
       />
       <EpisodeContent contents={contents} />
+      <CommentSection seriesId={id} number={episodeId} />
     </div>
   );
 }
