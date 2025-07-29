@@ -27,4 +27,6 @@ export const REQUEST = {
   COMMENT_WORK: '/api/storage/comment',
   RECENT_VIEW_WORK: '/api/member/list/view',
   EPISODE: '/api/work/episode',
+  GET_AUTHOR_DETAIL: '/api/member/detail',
+  COMMENTS: '/api/comments/',
 };
