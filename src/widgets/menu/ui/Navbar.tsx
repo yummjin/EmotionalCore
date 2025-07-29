@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { PATH } from '@/shared/constants';
-import { cn, fetchLoginStatus } from '@/shared/utils';
+import { cn, fetchLoginStatus, getCookie } from '@/shared/utils';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,6 +11,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 import { NAVBAR_ITEMS } from '../model';
 import NavButton from './NavButton';
+import { User } from '@/shared/types';
 
 const LogoButton = () => {
   const router = useRouter();
@@ -26,19 +27,37 @@ const LogoButton = () => {
   );
 };
 
-const AddSection = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+const AddSection = ({
+  isLoggedIn,
+  profileImageUrl,
+}: {
+  isLoggedIn: boolean;
+  profileImageUrl: string;
+}) => {
   const router = useRouter();
 
   return (
     <div className="flex items-center gap-8">
-      <button className="flex cursor-pointer items-center gap-2">
+      <button
+        className="flex cursor-pointer items-center gap-2"
+        onClick={() => {
+          if (isLoggedIn) {
+            router.push(PATH.WORK_REGISTER);
+          } else {
+            router.push(PATH.LOGIN);
+          }
+        }}
+      >
         <Image src="/icons/icon-add.svg" alt="logo" width={24} height={24} />
         <span className="text-m-600 text-b1 font-normal md:font-medium">
           작품 등록
         </span>
       </button>
       <button
-        className="size-[32px] cursor-pointer rounded-full bg-gray-300 outline-none"
+        className="size-[32px] cursor-pointer rounded-full bg-gray-300 bg-cover bg-center outline-none"
+        style={{
+          backgroundImage: `url(${profileImageUrl || '/images/image-profile.jpg'})`,
+        }}
         onClick={() => {
           if (isLoggedIn) {
             router.push(PATH.USER);
@@ -54,6 +73,19 @@ const AddSection = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 export default function Navbar() {
   const pathname = usePathname();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let profileImageUrl = '/images/image-profile.jpg';
+
+  try {
+    const userInfoCookie = getCookie('userInfo');
+    if (userInfoCookie) {
+      const { profileImageUrl: userProfileImage } = JSON.parse(
+        decodeURIComponent(userInfoCookie),
+      ) as User;
+      profileImageUrl = userProfileImage;
+    }
+  } finally {
+    profileImageUrl = '/images/image-profile.jpg';
+  }
 
   const isLibraryActive =
     pathname === PATH.LIBRARY || pathname.startsWith(PATH.LIBRARY);
@@ -83,11 +115,11 @@ export default function Navbar() {
             </Link>
           </div>
         </div>
-        <AddSection isLoggedIn={isLoggedIn} />
+        <AddSection isLoggedIn={isLoggedIn} profileImageUrl={profileImageUrl} />
       </div>
       <div className="flex w-full items-center justify-between gap-13 md:hidden">
         <LogoButton />
-        <AddSection isLoggedIn={isLoggedIn} />
+        <AddSection isLoggedIn={isLoggedIn} profileImageUrl={profileImageUrl} />
       </div>
       <div className="flex w-full items-center justify-between md:hidden">
         <div className="text-b1 flex w-full items-center justify-between font-medium">
