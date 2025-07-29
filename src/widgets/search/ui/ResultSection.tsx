@@ -3,7 +3,7 @@
 import type { AuthorDto, SearchResultResponse, WorkDto } from '../types';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ImageItem } from '@/shared/ui';
+import { ImageItem, TagItem } from '@/shared/ui';
 
 export default function ResultSection({
   data,
@@ -130,12 +130,7 @@ const WorkItem = ({
       </div>
       <div className="scrollbar-hide flex flex-nowrap gap-2 overflow-x-auto">
         {tags.map(tag => (
-          <span
-            key={tag}
-            className="text-d1 flex-shrink-0 rounded-[10px] border-[1px] border-gray-400 bg-gray-50 px-3 py-2"
-          >
-            {tag}
-          </span>
+          <TagItem key={tag} tag={tag} />
         ))}
       </div>
     </div>
@@ -143,12 +138,13 @@ const WorkItem = ({
 );
 
 const AuthorItem = ({
+  id,
   authorName,
   profileImageUrl,
   seriesCount,
   tags,
 }: AuthorDto) => (
-  <div className="flex gap-[30px] py-6">
+  <Link href={`/author/${id}`} className="flex cursor-pointer gap-[30px] py-6">
     <div className="relative size-[134px] rounded-full">
       <ImageItem
         src={profileImageUrl}
@@ -174,15 +170,10 @@ const AuthorItem = ({
       </div>
 
       <div className="scrollbar-hide flex flex-nowrap gap-2 overflow-x-auto">
-        {tags.map(tag => (
-          <span
-            key={tag}
-            className="text-d1 flex-shrink-0 rounded-[10px] border-[1px] border-gray-400 bg-gray-50 px-3 py-2"
-          >
-            {tag}
-          </span>
+        {tags.map((tag: string) => (
+          <TagItem key={tag} tag={tag} />
         ))}
       </div>
     </div>
-  </div>
+  </Link>
 );
