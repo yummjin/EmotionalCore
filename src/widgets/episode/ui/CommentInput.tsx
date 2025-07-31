@@ -57,7 +57,7 @@ export default function CommentInput({
           <button
             onClick={onSubmit}
             disabled={isSubmitting || !value.trim()}
-            className="rounded-lg bg-gray-300 px-4 py-2 text-sm font-medium text-black hover:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+            className="cursor-pointer rounded-lg bg-gray-300 px-4 py-2 text-sm font-medium text-black hover:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
           >
             댓글 남기기
           </button>

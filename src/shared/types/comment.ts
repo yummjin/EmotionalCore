@@ -1,17 +1,19 @@
+import type { EpisodeDetail } from './episode';
+import type { User } from './user';
+
 export type Comment = {
-  id: string;
-  content: string;
-  authorName: string;
-  profileImageUrl: string;
-  likeCount: number;
-  createdAt: string;
-  isLiked: boolean;
+  id: number;
+  commentId: number;
+  seriesId: number;
+  number: number;
+  episode: EpisodeDetail;
+  commentContents: string;
+  commentDate: string;
+  commentLike: number;
+  member: Omit<User, 'tags'>;
 };
 
-export type CommentResponse = {
-  content: Comment[];
-  totalCount: number;
-};
+export type CommentResponse = Comment[];
 
 export type CreateCommentRequest = {
   content: string;

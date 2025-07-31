@@ -20,7 +20,7 @@ export default function CommentList({ comments }: CommentListProps) {
   return (
     <div className="flex w-full flex-col divide-y divide-gray-200">
       {comments.map(comment => (
-        <CommentItem key={comment.id} comment={comment} />
+        <CommentItem key={comment.commentId} comment={comment} />
       ))}
     </div>
   );

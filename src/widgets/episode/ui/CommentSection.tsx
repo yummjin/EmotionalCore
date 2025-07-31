@@ -35,7 +35,7 @@ export default function CommentSection({
 
   if (isLoading) {
     return (
-      <div className="flex w-full flex-col gap-4 rounded-lg bg-white p-6 shadow-sm">
+      <div className="flex w-full flex-col gap-6 bg-white">
         <div className="text-h4 font-medium">댓글</div>
         <div className="animate-pulse space-y-4">
           {[1, 2, 3].map(i => (
@@ -55,7 +55,7 @@ export default function CommentSection({
   return (
     <div className="flex w-full flex-col gap-6 bg-white">
       <div className="text-h4 font-medium">
-        {commentsData?.totalCount || 0}개의 댓글
+        {commentsData?.length || 0}개의 댓글
       </div>
 
       <CommentInput
@@ -65,7 +65,7 @@ export default function CommentSection({
         isSubmitting={isPending}
       />
 
-      <CommentList comments={commentsData?.content || []} />
+      <CommentList comments={commentsData || []} />
     </div>
   );
 }
