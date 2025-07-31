@@ -1,17 +1,15 @@
 import { ImageItem } from '@/shared/ui';
-import { fetchWorkDetail } from '../api';
+import type { WorkDetail } from '@/shared/types';
 
-export default async function WorkInfoSection({ id }: { id: string }) {
-  const {
-    coverImageUrl,
-    title,
-    authorName,
-    viewCount,
-    likeCount,
-    bookmarkCount,
-    description,
-  } = await fetchWorkDetail(id);
-
+export default function WorkInfoSection({
+  coverImageUrl,
+  title,
+  authorName,
+  viewCount,
+  likeCount,
+  bookmarkCount,
+  description,
+}: WorkDetail) {
   return (
     <section className="flex w-full flex-col gap-10 md:flex-row">
       <div className="relative h-[290px] w-full rounded-[10px] md:h-[300px] md:w-[200px] lg:h-[400px] lg:w-[300px]">

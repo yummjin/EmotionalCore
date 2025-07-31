@@ -1,23 +1,26 @@
 import React from 'react';
-import { fetchWorkEpisode } from '../api';
 
 import WorkEpisodeView from './WorkEpisodeView';
+import type { Episode } from '@/shared/types';
 
-export default async function WorkEpisodeSection({
+export default function WorkEpisodeSection({
   id,
   index,
+  episodes,
+  totalCount,
 }: {
   id: string;
   index: number;
+  episodes: Episode[];
+  totalCount: number;
 }) {
-  const { content, totalCount } = await fetchWorkEpisode(id, index);
   return (
     <section className="flex w-full flex-col gap-4">
       <div className="flex w-full justify-between">
         <span>작품 회차 {totalCount}개</span>
       </div>
       <WorkEpisodeView
-        content={content}
+        content={episodes}
         index={index}
         totalCount={totalCount}
         id={id}
